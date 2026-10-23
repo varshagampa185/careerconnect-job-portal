@@ -1,0 +1,256 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerConnect | Find Your Future</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a class="logo" href="#">Career<span>Connect</span></a>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#jobs">Explore Jobs</a>
+        <a href="#applications">My Applications</a>
+    </nav>
+
+    <a href="#jobs" class="nav-button">Find Jobs →</a>
+</header>
+
+<main>
+
+    <section class="hero" id="dashboard">
+        <div class="hero-content">
+            <span class="badge">YOUR CAREER STARTS HERE</span>
+
+            <h1>Discover Your Next<br>
+                <span>Career Opportunity.</span>
+            </h1>
+
+            <p>
+                Explore jobs and internships, save your favorites,
+                and manage your applications in one place.
+            </p>
+
+            <a href="#jobs" class="primary-button">
+                Explore Opportunities →
+            </a>
+        </div>
+
+        <div class="hero-card">
+            <div class="hero-icon">🚀</div>
+            <h3>Your future is waiting.</h3>
+            <p>Small steps today. Big achievements tomorrow.</p>
+            <div class="progress-bar">
+                <div></div>
+            </div>
+            <small>Keep moving forward!</small>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <span>💼</span>
+            <p>Total Opportunities</p>
+            <h2 id="totalJobs">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <span>⭐</span>
+            <p>Saved Jobs</p>
+            <h2 id="savedJobs">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <span>📨</span>
+            <p>Applications</p>
+            <h2 id="applicationCount">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <span>🎯</span>
+            <p>Interviews</p>
+            <h2 id="interviewCount">0</h2>
+        </div>
+    </section>
+
+    <section class="jobs-section" id="jobs">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">OPPORTUNITIES FOR YOU</span>
+                <h2>Explore Opportunities</h2>
+                <p>Discover positions that match your interests.</p>
+            </div>
+
+            <button id="addJobButton" class="secondary-button">
+                + Add a Job
+            </button>
+        </div>
+
+        <div class="search-panel">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search job title or company..."
+                aria-label="Search jobs"
+            >
+
+            <select id="categoryFilter" aria-label="Filter by category">
+                <option value="All">All Categories</option>
+                <option value="Software Development">Software Development</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="Design">Design</option>
+            </select>
+
+            <select id="typeFilter" aria-label="Filter by job type">
+                <option value="All">All Types</option>
+                <option value="Internship">Internship</option>
+                <option value="Full-time">Full-time</option>
+            </select>
+
+            <button id="savedOnlyButton" class="secondary-button">
+                ⭐ Saved Only
+            </button>
+        </div>
+
+        <div id="jobList" class="job-grid"></div>
+
+        <p id="emptyMessage" class="empty-message" hidden>
+            No matching opportunities found. Try another search.
+        </p>
+
+    </section>
+
+    <section class="applications-section" id="applications">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">YOUR CAREER JOURNEY</span>
+                <h2>My Applications</h2>
+                <p>Track the status of opportunities you've applied for.</p>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Company</th>
+                        <th>Date Applied</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="applicationList"></tbody>
+            </table>
+        </div>
+
+        <p id="applicationEmpty" class="empty-message">
+            You haven't tracked any applications yet.
+        </p>
+
+    </section>
+
+    <section class="add-job-section" id="addJobSection" hidden>
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">PERSONAL JOB TRACKER</span>
+                <h2>Add an Opportunity</h2>
+                <p>Add a job listing to your personal dashboard.</p>
+            </div>
+        </div>
+
+        <form id="jobForm" class="job-form">
+
+            <label>
+                Job Title
+                <input id="jobTitle" required maxlength="100"
+                    placeholder="e.g. Frontend Developer">
+            </label>
+
+            <label>
+                Company
+                <input id="companyName" required maxlength="100"
+                    placeholder="e.g. Example Technologies">
+            </label>
+
+            <label>
+                Location
+                <input id="jobLocation" required maxlength="100"
+                    placeholder="e.g. Hyderabad">
+            </label>
+
+            <label>
+                Category
+                <select id="jobCategory" required>
+                    <option value="Software Development">Software Development</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Cybersecurity">Cybersecurity</option>
+                    <option value="Design">Design</option>
+                </select>
+            </label>
+
+            <label>
+                Job Type
+                <select id="jobType" required>
+                    <option value="Internship">Internship</option>
+                    <option value="Full-time">Full-time</option>
+                </select>
+            </label>
+
+            <label>
+                Work Mode
+                <select id="workMode" required>
+                    <option value="Onsite">Onsite</option>
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Remote">Remote</option>
+                </select>
+            </label>
+
+            <label class="full-width">
+                Description
+                <textarea id="jobDescription" required maxlength="500"
+                    placeholder="Describe the opportunity..."></textarea>
+            </label>
+
+            <div class="form-actions full-width">
+                <button type="submit" class="primary-button">
+                    Add Opportunity
+                </button>
+
+                <button type="button" id="cancelJobButton"
+                    class="secondary-button">
+                    Cancel
+                </button>
+            </div>
+
+        </form>
+    </section>
+
+</main>
+
+<footer>
+    <a class="logo" href="#">Career<span>Connect</span></a>
+
+    <p>Build your skills. Discover opportunities. Shape your future.</p>
+
+    <small>Student project developed with HTML, CSS and JavaScript.</small>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
+```
